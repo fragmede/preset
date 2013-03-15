@@ -1,0 +1,70 @@
+<head>
+  <title>present</title>
+  <script language='javascript>
+      function()={};
+  </script>
+</head>
+
+<body>
+  {{>content}}
+  {{>footer}}
+  {{>controls}}
+</body>
+
+<template name="controls">
+  <a href='#' class='show_ctrl'>[show controls]</a>
+  {{#if showControls}}
+  <span>
+      <br>
+      <input class='zero' type="button" value="|<" />
+      <input class='dn' type="button" value="<" />
+      <input id='inp' type="text" size=1 value="{{set}}" />
+      <input class='set' type="button" value="set" />
+      <input class='up' type="button" value=">" />
+      <input class='end' type="button" value=">|" />
+  </span>
+  {{/if}}
+</template>
+
+<template name="slide">
+<div style='background-color: gray;'>
+    <div> {{content}} </div>
+</div>
+<br>
+</template>
+
+<template name="content">
+<div class='slide'>
+    <br>
+    {{#if eq 1}}
+    <div>
+        <h1><center>Intro Slide</center></h1>
+    </div>
+    {{/if}}{{#if eq 2 }}
+    <div>
+        <h1>Slide with UL</h1>
+        <ul>
+            <li>asdf</li>
+            <li>fdsa</li>
+        </ul>
+    </div>
+    {{/if}}{{#if eq 3}}
+    <div style='background-color:grey;'><h1>Slide 3</h1>
+    </div>
+    {{/if}}{{#if eq 4}}
+    <div> <h1>Slide with Image</h1>
+        <img src='https://io-2012-slides.googlecode.com/git/images/chart.png'>
+    </div>
+    {{/if}}{{#if eq 5}}
+    <div> Slide Number 5
+    </div>
+    {{/if}}{{#if eq 6}}
+    <div> Slide Number 6
+    </div>
+    {{/if}}
+</div>
+</template>
+
+<template name="footer">
+    <div>{{nums}}/{{max}}</div>
+</template>
