@@ -7,21 +7,21 @@ if (Meteor.isClient) {
   });
   Template.controls.events({
     'click .zero' : function () {
-        Index.update({}, {$set: {index: 1}});
+        Index.update({_id: Index.findOne()._id}, {$set: {index: 1}});
     },
     'click .dn' : function () {
         if (index() > 1)
-            Index.update({}, {$inc: {index: -1}});
+            Index.update({_id: Index.findOne()._id}, {$inc: {index: -1}});
+        else:
+            Index.update({_id: Index.findOne()._id}, {index: 0});
     },
     'click .up' : function () {
-        Index.update({}, {$inc: {index: 1}});
+        Index.update({_id: Index.findOne()._id}, {$inc: {index: 1}});
     },
-    'click .set' : function () {
-        idx = parseInt(this.inp.value);
-        if (isNaN(idx))
-            this.inp.value = index();
-        else
-            Index.update({}, {$set: {index: idx}});
+    'click .set' : function (evt, template) {
+        inp = template.find('.inp')
+        idx = parseInt(inp.value);
+        Index.update({_id: Index.findOne()._id}, {index: idx});
     },
     'click .show_ctrl' : function () {
         Session.set('show_ctrl', !Session.get('show_ctrl'));
